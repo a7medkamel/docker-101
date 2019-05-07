@@ -1,0 +1,18 @@
+FROM node as build
+
+COPY . /tmp
+
+WORKDIR /tmp/ts/
+
+RUN rm -rf ./node_modules     && \
+    npm install -g typescript && \
+    npm install               && \
+    tsc ./index.ts
+
+FROM node
+
+COPY --from=build /tmp/ts /www
+
+CMD node /www/index.js
+
+EXPOSE 80

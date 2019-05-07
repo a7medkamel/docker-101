@@ -1,0 +1,17 @@
+FROM node
+
+COPY . /tmp
+
+WORKDIR /tmp/ts/
+
+RUN rm -rf ./node_modules
+
+RUN npm install -g typescript
+
+RUN npm install
+
+RUN tsc ./index.ts
+
+CMD node ./index.js
+
+EXPOSE 80

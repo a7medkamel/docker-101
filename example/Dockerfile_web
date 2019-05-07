@@ -1,0 +1,7 @@
+FROM node
+
+COPY . /tmp
+
+CMD node /tmp/web/index.js
+
+EXPOSE 80
